@@ -1,23 +1,20 @@
 from mcp.server.fastmcp import FastMCP
+import os
 
 mcp = FastMCP("band-mcp")
 
 @mcp.tool()
 def hello(name: str) -> str:
-    return f"Hello {name}, MCP is working!"
+    return f"Hello {name}"
 
 @mcp.tool()
 def get_band_info(name: str) -> dict:
     return {
         "name": name,
-        "status": "running on Railway",
+        "status": "running",
         "members": []
     }
 
-# ★重要：RailwayではこれでHTTP起動
 if __name__ == "__main__":
-    mcp.run(
-        transport="sse",
-        host="0.0.0.0",
-        port=int(__import__("os").getenv("PORT", 8000))
-    )
+    # ★重要：引数なしで起動
+    mcp.run()
