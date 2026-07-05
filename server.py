@@ -1,7 +1,10 @@
+import os
+from fastapi import FastAPI
 from mcp.server.fastmcp import FastMCP
 from tools.search import search_band
 
-mcp = FastMCP("Live Production Assistant")
+app = FastAPI(title="GALLERIA Live Assistant")
+mcp = FastMCP("GALLERIA Live Assistant")
 
 
 @mcp.tool()
@@ -16,5 +19,14 @@ def get_band_info(name: str) -> dict:
     return search_band(name)
 
 
-if __name__ == "__main__":
-    mcp.run(transport="streamable-http")
+@app.get("/")
+def root():
+    return {
+        "service": "GALLERIA Live Assistant",
+        "status": "running"
+    }
+
+
+@app.get("/health")
+def health():
+    return {"ok": True}

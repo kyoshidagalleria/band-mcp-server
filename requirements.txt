@@ -3,3 +3,5 @@ httpx
 duckduckgo-search
 beautifulsoup4
 lxml
+fastapi
+uvicorn
