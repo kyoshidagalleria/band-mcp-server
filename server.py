@@ -20,3 +20,12 @@ def health():
 @app.get("/band")
 def get_band_info(name: str):
     return search_band(name)
+
+
+@app.get("/debug")
+def debug():
+    from tools.band_db import BAND_DB
+    return {
+        "band_db_keys": list(BAND_DB.keys()),
+        "has_gertena": "GERTENA" in BAND_DB
+    }
