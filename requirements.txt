@@ -1,2 +1,5 @@
 mcp==1.28.1
 httpx
+duckduckgo-search
+beautifulsoup4
+lxml

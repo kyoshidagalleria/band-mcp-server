@@ -1,20 +1,21 @@
 from mcp.server.fastmcp import FastMCP
+from tools.search import search_band
 
-mcp = FastMCP("band-mcp")
+mcp = FastMCP("Live Production Assistant")
 
 
 @mcp.tool()
 def hello(name: str) -> str:
+    """動作確認用"""
     return f"Hello, {name}!"
 
 
 @mcp.tool()
 def get_band_info(name: str) -> dict:
-    return {
-        "name": name,
-        "members": [],
-        "status": "準備中"
-    }
+    """
+    バンド情報を取得する
+    """
+    return search_band(name)
 
 
 if __name__ == "__main__":
